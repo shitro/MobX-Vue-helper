@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2015",
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM"],
+    "moduleResolution": "Node",
+    "useDefineForClassFields": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "vue",
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "outDir": "./dist"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"],
+  "typedocOptions": {
+    "name": "MobX Vue helper",
+    "excludeExternals": true,
+    "excludePrivate": true,
+    "readme": "./README.md"
+  }
+}

@@ -1,0 +1,7 @@
+*.log
+*.tsbuildinfo
+docs/
+.DS_Store/
+.vscode/
+.idea/
+.github/
