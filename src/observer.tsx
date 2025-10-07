@@ -2,8 +2,9 @@ import { FunctionalComponent, defineComponent, SetupContext, VNode } from 'vue';
 import { Vue } from 'vue-facing-decorator';
 import { IReactionDisposer, IReactionPublic, reaction as watch } from 'mobx';
 import { Observer } from 'mobx-vue-lite';
+import { Constructor } from 'web-utility';
 
-export type Constructor<T = {}> = new (...data: any[]) => T;
+import { ProxyMap } from './utility';
 
 export interface VueInstance extends InstanceType<typeof Vue> {
   render?(): VNode | null;
@@ -19,7 +20,7 @@ interface ReactionItem {
   expression: ReactionExpression;
   effect: (...data: any[]) => any;
 }
-const reactionMap = new WeakMap<object, ReactionItem[]>();
+const reactionMap = new ProxyMap<object, ReactionItem[]>();
 
 /**
  * Method decorator of [MobX `reaction()`](https://mobx.js.org/reactions.html#reaction)

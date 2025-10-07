@@ -1,6 +1,6 @@
 {
   "name": "mobx-vue-helper",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "license": "LGPL-2.1",
   "author": "shiy2008@gmail.com",
   "description": "MobX Class & JSX helpers for Vue 3 components, providing seamless integration with MobX state management for both class and function components.",
@@ -38,7 +38,8 @@
     "mobx": ">=6.11",
     "mobx-vue-lite": ">=0.4",
     "vue": ">=3",
-    "vue-facing-decorator": ">=4"
+    "vue-facing-decorator": ">=4",
+    "web-utility": "^4.6.1"
   },
   "devDependencies": {
     "@types/node": "^22.18.8",
