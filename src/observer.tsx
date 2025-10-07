@@ -1,11 +1,15 @@
-import { FunctionalComponent, defineComponent, SetupContext } from 'vue';
-import { HookMounted, HookRender, HookUnmounted, Vue } from 'vue-facing-decorator';
+import { FunctionalComponent, defineComponent, SetupContext, VNode } from 'vue';
+import { Vue } from 'vue-facing-decorator';
 import { IReactionDisposer, IReactionPublic, reaction as watch } from 'mobx';
 import { Observer } from 'mobx-vue-lite';
 
 export type Constructor<T = {}> = new (...data: any[]) => T;
 
-export type VueInstance = InstanceType<typeof Vue>;
+export interface VueInstance extends InstanceType<typeof Vue> {
+  render?(): VNode | null;
+  mounted?(): any;
+  unmounted?(): any;
+}
 
 export type ReactionExpression<I = any, O = any> = (data: I, reaction: IReactionPublic) => O;
 
@@ -65,54 +69,41 @@ export const reaction =
       reactionMap.set(this, reactions);
     });
 
-type UserComponent = Constructor<VueInstance & Partial<HookRender & HookMounted & HookUnmounted>>;
-
 const wrapClass = <T extends typeof Vue>(Component: T) =>
-  class ObserverComponent extends (Component as UserComponent) {
+  class ObserverComponent extends (Component as Constructor<VueInstance>) {
     protected disposers?: IReactionDisposer[] = [];
 
-    mounted = () => {
+    mounted() {
       this.disposers = reactionMap
         .get(this)
         ?.map(({ expression, effect }) =>
           watch(reaction => expression(this, reaction), effect.bind(this))
         );
       super.mounted?.();
-    };
+    }
 
-    render = () => <Observer>{() => super.render?.()}</Observer>;
+    render() {
+      return <Observer>{() => super.render?.()}</Observer>;
+    }
 
-    unmounted = () => {
+    unmounted() {
       for (const disposer of this.disposers || []) disposer();
 
       this.disposers = [];
 
       super.unmounted?.();
-    };
+    }
   };
 
 /**
- * Observer decorator/wrapper for both class and function components.
- * Automatically tracks and reacts to MobX observable state changes.
+ * Observer decorator for Class components,
+ * tracks & reacts to MobX observable state changes automatically.
  *
- * For function components:
- * @example
- * ```tsx
- * import { observer } from 'mobx-vue-helper';
- * import counterStore from './models/Counter';
- *
- * export const MyMobX = observer(() => (
- *   <button onClick={() => counterStore.increment()}>
- *     Count: {counterStore.count}
- *   </button>
- * ));
- * ```
- *
- * For class components:
  * @example
  * ```tsx
  * import { Vue, Component, toNative } from 'vue-facing-decorator';
  * import { observer } from 'mobx-vue-helper';
+ *
  * import counterStore from './models/Counter';
  *
  * @Component
@@ -131,6 +122,23 @@ export function observer<T extends typeof Vue>(
   ClassComponent: T,
   {}: ClassDecoratorContext<T>
 ): void | T;
+/**
+ * Observer wrapper for Function components,
+ * tracks & reacts to MobX observable state changes automatically.
+ *
+ * @example
+ * ```tsx
+ * import { observer } from 'mobx-vue-helper';
+ *
+ * import counterStore from './models/Counter';
+ *
+ * export const MyMobX = observer(() => (
+ *   <button onClick={() => counterStore.increment()}>
+ *     Count: {counterStore.count}
+ *   </button>
+ * ));
+ * ```
+ */
 export function observer<P extends Record<string, unknown> = {}>(
   functionComponent: FunctionalComponent<P>
 ): FunctionalComponent<P>;

@@ -4,4 +4,5 @@ docs/
 .DS_Store/
 .vscode/
 .idea/
+.husky/
 .github/

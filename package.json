@@ -1,6 +1,6 @@
 {
   "name": "mobx-vue-helper",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "license": "LGPL-2.1",
   "author": "shiy2008@gmail.com",
   "description": "MobX Class & JSX helpers for Vue 3 components, providing seamless integration with MobX state management for both class and function components.",
