@@ -70,7 +70,6 @@ export class CounterStore {
     this.count--;
   }
 }
-
 export default new CounterStore();
 ```
 
@@ -115,73 +114,36 @@ The `@reaction()` decorator allows you to define MobX reactions directly on clas
 
 As the implementation of Vue 3 & Vue-facing-decorator are dependent on `Proxy` API, and MobX 6+ & [ES Decorator stage-3][6] are dependent on `accessor` properties (which is used the [Private Field][7] inside), it'll throw errors when they are working together, so we can't [put `@observable` on fields of class components directly as React & WebCell do][8].
 
-There're 2 alternatives to work around this:
+You need to create a separate store class with `@observable` properties and use it inside your Vue class component:
 
-1.  create a separate store class with `@observable` properties and use it inside your Vue class component.
+```tsx
+import { Vue, Component, toNative } from 'vue-facing-decorator';
+import { observable } from 'mobx';
+import { observer } from 'mobx-vue-helper';
 
-    ```tsx
-    import { Vue, Component, toNative } from 'vue-facing-decorator';
-    import { observable } from 'mobx';
-    import { observer } from 'mobx-vue-helper';
+class State {
+  @observable
+  accessor count = 0;
 
-    class State {
-      @observable
-      accessor count = 0;
+  increment() {
+    this.count++;
+  }
 
-      increment() {
-        this.count++;
-      }
+  decrement() {
+    this.count--;
+  }
+}
+const state = new State();
 
-      decrement() {
-        this.count--;
-      }
-    }
-
-    @Component
-    @observer
-    class MyMobX extends Vue {
-      state = new State();
-
-      render() {
-        const { state } = this;
-
-        return <button onClick={() => state.increment()}>Count: {state.count}</button>;
-      }
-    }
-    export default toNative(MyMobX);
-    ```
-
-2.  use `makeAutoObservable(this)` in the constructor of your Vue class component to make all properties observable.
-
-    ```tsx
-    import { Vue, Component, toNative } from 'vue-facing-decorator';
-    import { observer } from 'mobx-vue-helper';
-    import { makeAutoObservable } from 'mobx';
-
-    @Component
-    @observer
-    class MyMobX extends Vue {
-      count = 0;
-
-      constructor() {
-        super();
-        makeAutoObservable(this);
-      }
-
-      increment() {
-        this.count++;
-      }
-
-      decrement() {
-        this.count--;
-      }
-
-      render() {
-        return <button onClick={() => this.increment()}>Count: {this.count}</button>;
-      }
-    }
-    export default toNative(MyMobX);
-    ```
+@Component
+@observer
+class MyMobX extends Vue {
+  render() {
+    return <button onClick={() => state.increment()}>Count: {state.count}</button>;
+  }
+}
+export default toNative(MyMobX);
+```
 
 ## Requirements
 
