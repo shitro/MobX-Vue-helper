@@ -1,5 +1,5 @@
-import { FunctionalComponent, VNode } from 'vue';
-import { Component, toNative, Vue } from 'vue-facing-decorator';
+import { defineComponent, FunctionalComponent, SetupContext, VNode } from 'vue';
+import { Vue } from 'vue-facing-decorator';
 import { IReactionDisposer, IReactionPublic, reaction as watch } from 'mobx';
 import { Observer } from 'mobx-vue-lite';
 import { Constructor } from 'web-utility';
@@ -152,17 +152,9 @@ export function observer(component: unknown): unknown {
   }
   const FunctionComponent = component as FunctionalComponent<Record<string, unknown>>;
 
-  @Component
-  class FunctionWrapper extends Vue {
-    render() {
-      const { $props, $attrs, $slots, $emit } = this;
-
-      return (
-        <Observer>
-          {() => FunctionComponent($props, { attrs: $attrs, slots: $slots, emit: $emit })}
-        </Observer>
-      );
-    }
-  }
-  return toNative(FunctionWrapper);
+  return defineComponent({
+    setup: (props: Record<string, unknown>, context: SetupContext) => () => (
+      <Observer>{() => FunctionComponent(Object.assign(props, context.attrs), context)}</Observer>
+    )
+  });
 }
