@@ -154,7 +154,7 @@ export function observer(component: unknown): unknown {
 
   return defineComponent({
     setup: (props: Record<string, unknown>, context: SetupContext) => () => (
-      <Observer>{() => FunctionComponent(Object.assign(props, context.attrs), context)}</Observer>
+      <Observer>{() => FunctionComponent({ ...props, ...context.attrs }, context)}</Observer>
     )
   });
 }
